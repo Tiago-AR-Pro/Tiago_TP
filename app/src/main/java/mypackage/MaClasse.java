@@ -1,11 +1,15 @@
 package mypackage;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.content.Context;
 import android.view.View;
+
+import UPsay.decouverteAndroid.R;
 
 public class MaClasse extends View {
     public MaClasse(Context context, AttributeSet attrs) {
@@ -14,6 +18,7 @@ public class MaClasse extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
+    /*
         Paint p = new Paint();
         //définir la couleur de l’objet de dessin/
         p.setColor(Color.BLACK);
@@ -30,5 +35,10 @@ public class MaClasse extends View {
         //dessiner le texte en positionnant son origine au centr du  View/
         String texte = "Bonjour MONDE";
         canvas.drawText(texte, getWidth() / 2, getHeight() / 2, p);
+     */
+        Paint paint = new Paint();
+        Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.flagportugal);
+        //b = Bitmap.createBitmap(b,0,0,50,50);
+        canvas.drawBitmap(b, 200,200,paint);
     }
 }
