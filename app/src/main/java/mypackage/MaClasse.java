@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.content.Context;
 import android.view.View;
+import android.widget.Toast;
 
 import UPsay.decouverteAndroid.R;
 
@@ -40,5 +41,6 @@ public class MaClasse extends View {
         Bitmap b = BitmapFactory.decodeResource(getResources(), R.drawable.flagportugal);
         //b = Bitmap.createBitmap(b,0,0,50,50);
         canvas.drawBitmap(b, 200,200,paint);
+        Toast.makeText(getContext(),"Il faut saisir une heure",Toast.LENGTH_SHORT).show();
     }
 }
