@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MainActivity</string>
     <string name="button">Button</string>
+    <string name="gestionnaire_2">GESTIONNAIRE 2</string>
 </resources>
