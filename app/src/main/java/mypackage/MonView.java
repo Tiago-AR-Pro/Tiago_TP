@@ -3,6 +3,10 @@ package mypackage;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.util.AttributeSet;
 import android.content.Context;
 import android.util.Log;
@@ -15,6 +19,7 @@ import android.os.Handler;
 public class MonView extends View{
 float xText, yText;
 float x1, x2, y1, y2;
+private int pencheH, pencheV, penche;
 int sizeText=0;
 Handler timerHandler = new Handler();
 
@@ -77,6 +82,27 @@ public MonView(Context context, AttributeSet attrs) {
         }
     };
     setOnTouchListener(onTouchListener);
+    /* accelerometre */
+    Sensor accelerometre;
+    SensorManager m = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
+    accelerometre = m.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+
+    final SensorEventListener mSensorEventListener = new SensorEventListener() {
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+        }
+
+        @Override
+        public void onSensorChanged(SensorEvent sensorEvent) {
+            // Que faire en cas d'évènements sur le capteur ?
+            pencheH = -(int)(sensorEvent.values[0]);
+            pencheV = (int)(sensorEvent.values[1]);
+            penche = pencheH * pencheH + pencheV * pencheV;
+            Log.i("accel", "H=" + pencheH +" V="+ pencheV);
+        }
+    };
+
+    m.registerListener(mSensorEventListener, accelerometre, SensorManager.SENSOR_DELAY_UI);
 }
 public void setXYText (float x, float y){
     xText = x;
